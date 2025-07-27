@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Inizializza npm e installa Tailwind CSS",
+			"command": "npm init -y && npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p",
+			"group": "build",
+			"isBackground": false
+		}
+	]
+}

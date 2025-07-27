@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ludos Cafe - Colazioni dal 1985</title>
+    <!-- Compilato con Tailwind CSS -->
+    <link href="dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+        }
+
+        .photo-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Responsive text scaling */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-inter bg-amber-50">
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-xl md:hidden">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="font-playfair text-xl font-bold text-gold-dark-900">Menu</h2>
+                <button id="closeMobileMenu" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <nav class="space-y-4">
+                <a href="#home"
+                    class="block text-gold-dark-900 hover:text-gold-dark-700 py-2 text-lg mobile-nav-link">Home</a>
+                <a href="#gallery"
+                    class="block text-gold-dark-900 hover:text-gold-dark-700 py-2 text-lg mobile-nav-link">Galleria</a>
+                <a href="#contatti"
+                    class="block text-gold-dark-900 hover:text-gold-dark-700 py-2 text-lg mobile-nav-link">Contatti</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileBackdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <h1 class="font-playfair text-xl sm:text-2xl font-bold text-gold-dark-900">☕ Ludos Cafe</h1>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#home"
+                        class="text-gold-dark-900 hover:text-gold-dark-700 transition-colors font-medium">Home</a>
+                    <a href="#gallery"
+                        class="text-gold-dark-900 hover:text-gold-dark-700 transition-colors font-medium">Galleria</a>
+                    <a href="#contatti"
+                        class="text-gold-dark-900 hover:text-gold-dark-700 transition-colors font-medium">Contatti</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="openMobileMenu" class="md:hidden text-gold-dark-900 hover:text-gold-dark-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jumbotron Hero Section -->
+    <section id="home"
+        class="bg-gradient-to-br from-gold-dark-900 to-gold-dark-700 text-white py-12 sm:py-16 md:py-20 lg:py-32">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="hero-title font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+                Benvenuti al<br class="sm:hidden"> Ludos Cafe
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto px-2">
+                Dal 2022 serviamo le migliori colazioni della città. Caffè espresso, cornetti freschi e un'atmosfera
+                familiare che ti farà sentire a casa.
+            </p>
+            <!-- <div
+                class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
+                <button
+                    class="w-full sm:w-auto border-2 border-white text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-amber-800 transition-colors text-sm sm:text-base">
+                    📍 Via Roma, 123
+                </button>
+                <button
+                    class="w-full sm:w-auto border-2 border-white text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-amber-800 transition-colors text-sm sm:text-base">
+                    📍 Via Roma, 123
+                </button>
+            </div> -->
+        </div>
+    </section>
+
+    <section class="jumbotron-section">
+        <div class="jumbotron-container">
+            <div class="image-row">
+                <img src="/src/img/jumbo1.png" alt="Immagine 1" />
+                <img src="/src/img/jumbo7.png" alt="Immagine 2" />
+                <img src="/src/img/jumbo3.png" alt="Immagine 3" />
+                <img src="/src/img/jumbo8.png" alt="Immagine 4" />
+                <img src="/src/img/jumbo5.jpeg" alt="Immagine 5" />
+                <img src="/src/img/jumbo6.jpeg" alt="Immagine 6" />
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-gold-dark-900 mb-6 sm:mb-8">
+                La Nostra Storia
+            </h2>
+            <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6 sm:mb-8 px-2">
+                Da oltre 3 anni, il Ludos Cafe è il punto di ritrovo mattutino per chi ama iniziare la giornata con il
+                piede giusto.
+                Offriamo colazioni genuine, caffè di qualità e un servizio cordiale che ci ha reso famosi in tutto il
+                quartiere.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-8 sm:mt-12">
+                <div class="text-center p-4">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">☕</div>
+                    <h3 class="font-semibold text-gold-dark-900 mb-2 text-lg">Caffè Kenon Gold</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Miscela selezionata e tostatura perfetta</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">🥐</div>
+                    <h3 class="font-semibold text-gold-dark-900 mb-2 text-lg">Cornetti Freschi</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Sfornati ogni mattina alle 5:30</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">🍹</div>
+                    <h3 class="font-semibold text-gold-dark-900 mb-2 text-lg">Drink e Aperitivi</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Cocktail freschi e aperitivi per ogni momento della
+                        giornata</p>
+                </div>
+                <div class="text-center p-4">
+                    <div class="text-3xl sm:text-4xl mb-3 sm:mb-4">❤️</div>
+                    <h3 class="font-semibold text-gold-dark-900 mb-2 text-lg">Atmosfera Familiare</h3>
+                    <p class="text-gray-600 text-sm sm:text-base">Un ambiente accogliente e rilassante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gold-dark-900 to-gold-dark-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-playfair text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-12">
+                I Nostri Momenti
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Photo 1 -->
+
+
+                <!-- Photo 2 -->
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div
+                        class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-yellow-200 to-amber-300 flex items-center justify-center">
+                        <div class="text-center text-amber-800 px-4">
+                            <div class="text-4xl sm:text-5xl md:text-6xl mb-2">🥐</div>
+                            <p class="font-semibold text-sm sm:text-base">Cornetti appena sfornati</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Dolci del Giorno</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm">Fragranti e caldi, come una volta</p>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg sm:col-span-2 lg:col-span-1">
+                    <div
+                        class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-orange-200 to-red-300 flex items-center justify-center">
+                        <div class="text-center text-amber-800 px-4">
+                            <div class="text-4xl sm:text-5xl md:text-6xl mb-2">🍳</div>
+                            <p class="font-semibold text-sm sm:text-base">Colazione completa</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Colazione Salata</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm">Per chi preferisce iniziare in modo sostanzioso</p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div
+                        class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-pink-200 to-rose-300 flex items-center justify-center">
+                        <div class="text-center text-amber-800 px-4">
+                            <div class="text-4xl sm:text-5xl md:text-6xl mb-2">🧁</div>
+                            <p class="font-semibold text-sm sm:text-base">Dolci artigianali</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Pasticceria Fresca</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm">Preparati con ingredienti genuini</p>
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div
+                        class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-green-200 to-emerald-300 flex items-center justify-center">
+                        <div class="text-center text-amber-800 px-4">
+                            <div class="text-4xl sm:text-5xl md:text-6xl mb-2">🥤</div>
+                            <p class="font-semibold text-sm sm:text-base">Spremute fresche</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Succhi Naturali</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm">Vitamine per iniziare al meglio</p>
+                    </div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div
+                        class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-200 to-indigo-300 flex items-center justify-center">
+                        <div class="text-center text-amber-800 px-4">
+                            <div class="text-4xl sm:text-5xl md:text-6xl mb-2">👥</div>
+                            <p class="font-semibold text-sm sm:text-base">La nostra famiglia</p>
+                        </div>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Il Nostro Team</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm">Sempre pronti ad accogliervi con un sorriso</p>
+                    </div>
+                </div>
+                <div class="photo-hover bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="aspect-[4/5] w-full relative">
+                        <video controls class="absolute inset-0 w-full h-full object-cover">
+                            <source src="./src/video/video1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="p-3 sm:p-4">
+                        <h3 class="font-semibold text-amber-800 mb-2 text-base sm:text-lg">Eventi</h3>
+                        <p class="text-gray-600 text-xs sm:text-sm"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contatti" class="bg-gradient-to-br from-zinc-800 to-neutral-900 text-white py-8 sm:py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Contact Info -->
+                <div class="text-center md:text-left">
+                    <h3 class="font-playfair text-xl sm:text-2xl font-bold mb-4">Ludos Cafe</h3>
+                    <div class="space-y-2 text-amber-100 text-sm sm:text-base">
+                        <p class="flex items-center justify-center md:justify-start gap-2">
+                            <span>📍</span> Via Roma, 123 - 00100 Roma
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start gap-2">
+                            <span>📞</span> +39 06 1234567
+                        </p>
+                        <p class="flex items-center justify-center md:justify-start gap-2">
+                            <span>✉️</span> info@barcentrale.it
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Opening Hours -->
+                <div class="text-center md:text-left">
+                    <h3 class="font-playfair text-lg sm:text-xl font-bold mb-4">Orari di Apertura</h3>
+                    <div class="space-y-2 text-amber-100 text-sm sm:text-base">
+                        <p>Lunedì - Venerdì: 6:00 - 14:00</p>
+                        <p>Sabato: 6:30 - 15:00</p>
+                        <p>Domenica: 7:00 - 13:00</p>
+                        <p class="text-yellow-300 font-semibold mt-3 text-xs sm:text-sm">
+                            ☕ Colazioni servite fino alle 11:00
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="text-center md:text-left">
+                    <h3 class="font-playfair text-lg sm:text-xl font-bold mb-4">Seguici sui Social</h3>
+                    <div class="flex justify-center md:justify-start space-x-3 sm:space-x-4">
+                        <a href="#" class="bg-blue-600 hover:bg-blue-700 p-2 sm:p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 p-2 sm:p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-black hover:bg-gray-800 p-2 sm:p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.404-5.965 1.404-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.562-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.888-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001.017.001z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 p-2 sm:p-3 rounded-full transition-colors">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-4.6v13.17a2.4 2.4 0 01-2.4 2.4 2.4 2.4 0 01-2.4-2.4 2.4 2.4 0 012.4-2.4.93.93 0 00.4-.09V9.69a5.84 5.84 0 00-5.85 5.85 5.84 5.84 0 005.85 5.85 5.84 5.84 0 005.85-5.85V9.1a8.37 8.37 0 004.91 1.59v-3.4a4.85 4.85 0 01-.39-.6z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-amber-100 mt-4 text-xs sm:text-sm">
+                        Condividi i tuoi momenti al Ludos Cafe con #BarCentrale
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-amber-700 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-amber-200">
+                <p class="text-sm sm:text-base">&copy; 2024 Ludos Cafe. Tutti i diritti riservati.</p>
+                <p class="mt-2 text-xs sm:text-sm">Dal 1985 nel cuore della città ❤️</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="main.js"></script>
+
+</html>
