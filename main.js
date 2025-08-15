@@ -50,13 +50,17 @@ window.addEventListener("resize", function () {
   }
 });
 
+// ...existing code...
+
 document.addEventListener('DOMContentLoaded', function () {
   const videos = document.querySelectorAll('video');
   videos.forEach(video => {
-    video.addEventListener('click', function () {
+    // Quando parte la riproduzione di un video, ferma tutti gli altri
+    video.addEventListener('play', function () {
       videos.forEach(v => {
         if (v !== video) v.pause();
       });
     });
   });
 });
+// ...existing code...
